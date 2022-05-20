@@ -6,10 +6,10 @@ const Product = props => {
   return (
     <article className={styles.product}>
       <div className={styles.imageContainer}>
-        <img 
+        <img
           className={styles.image}
           alt="Kodilla shirt"
-          src={`${process.env.PUBLIC_URL}/images/products/shirt-kodilla--black.jpg`} />
+          src={`${process.env.PUBLIC_URL}/images/products/shirt-kodilla--white.jpg`} />
       </div>
       <div>
         <header>
