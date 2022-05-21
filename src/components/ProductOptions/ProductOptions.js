@@ -2,17 +2,15 @@ import Button from "../Button/Button";
 import clsx from 'clsx';
 import styles from "./ProductOptions.module.scss";
 import shortid from "shortid";
-// import clsx from 'clsx';
+import OptionSize from "../OptionSize/OptionSize";
+import PropTypes from 'prop-types';
 
 const ProductOptions = (props) => {
      return (
           <form onSubmit={props.handleSubmitSummary}>
-               <div className={styles.sizes}>
-                    <h3 className={styles.optionLabel}>Sizes</h3>
-                    <ul className={styles.choices}>
-                         {props.sizes.map(size => <li key={shortid()} ><button onClick={() => props.handleSetSizeAndPrice(size)} type="button" className={size.name === props.currentSize ? styles.active : undefined}> {size.name}</button></li>)}
-                    </ul>
-               </div>
+
+               <OptionSize sizes={props.sizes} handleSetSizeAndPrice={props.handleSetSizeAndPrice} currentSize={props.currentSize}/>
+
                <div className={styles.colors}>
                     <h3 className={styles.optionLabel}>Colors</h3>
                     <ul className={styles.choices}>
@@ -25,5 +23,9 @@ const ProductOptions = (props) => {
           </form>
      );
 }
+
+ProductOptions.propTypes = {
+     handleSubmitSummary: PropTypes.func.isRequired,
+};
 
 export default ProductOptions
