@@ -17,7 +17,8 @@ const Products = () => {
             colors={product.colors}
             sizes={product.sizes}
             basePrice={product.basePrice} />
-        )} )};
+        )
+      })}
     </section>
   );
 };

@@ -1,9 +1,9 @@
-import styles from './Product.module.scss';
-import clsx from 'clsx';
-import Button from '../Button/Button';
+import stylesProduct from './Product.module.scss';
+import styles from '../OptionColor/OptionColor.module.scss';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import shortid from 'shortid';
+import ProductImage from '../ProductImage/ProductImage';
+import ProductOptions from '../ProductOptions/ProductOptions';
 
 const Product = props => {
 
@@ -35,39 +35,22 @@ const Product = props => {
   }
 
   return (
-    <article className={styles.product}>
-      <div className={styles.imageContainer}>
-        <img
-          className={styles.image}
-          alt={props.title}
-          src={`${process.env.PUBLIC_URL}/images/products/shirt-${props.name}--${currentColor}.jpg`} />
-      </div>
+    <article className={stylesProduct.product}>
+      <ProductImage title={props.title} name={props.name} currentColor={currentColor}/>
       <div>
+
         <header>
-          <h2 className={styles.name}>{props.title}</h2>
-          <span className={styles.price}>Price: {currentPrice}$</span>
+          <h2 className={stylesProduct.name}>{props.title}</h2>
+          <span className={stylesProduct.price}>Price: {currentPrice}$</span>
         </header>
-        <form onSubmit={handleSubmitSummary}>
-          <div className={styles.sizes}>
-            <h3 className={styles.optionLabel}>Sizes</h3>
-            <ul className={styles.choices}>
-              {props.sizes.map(size => <li key={shortid()} ><button onClick={()=>handleSetSizeAndPrice(size)}  type="button" className={size.name === currentSize ? styles.active : undefined}> {size.name}</button></li>)}
-            </ul>
-          </div>
-          <div className={styles.colors}>
-            <h3 className={styles.optionLabel}>Colors</h3>
-            <ul className={styles.choices}>
-              {props.colors.map(item => <li key={shortid()}><button onClick={()=> handleSetColor(item)} type="button" className={clsx(prepareColorClassName(item), item === currentColor && styles.active)} /></li>)}
-            </ul>
-          </div>
-          <Button className={styles.button}>
-            <span className="fa fa-shopping-cart" />
-          </Button>
-        </form>
+
+        <ProductOptions sizes={props.sizes} colors={props.colors} currentColor={currentColor} currentSize={currentSize} handleSubmitSummary={handleSubmitSummary} handleSetSizeAndPrice={handleSetSizeAndPrice} handleSetColor={handleSetColor} prepareColorClassName={prepareColorClassName} />
+
       </div>
     </article>
   )
 };
+
 
 Product.propTypes = {
   id: PropTypes.number.isRequired,
