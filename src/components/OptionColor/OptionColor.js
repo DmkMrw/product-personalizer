@@ -16,7 +16,6 @@ const OptionColor = (props) => {
      );
 }
 
-
 OptionColor.propTypes = {
 
 }
