@@ -8,7 +8,7 @@ const ProductOptions = (props) => {
      return (
           <form onSubmit={props.handleSubmitSummary}>
 
-               <OptionSize sizes={props.sizes} handleSetSizeAndPrice={props.handleSetSizeAndPrice} currentSize={props.currentSize}/>
+               <OptionSize sizes={props.sizes} handleSetSizeAndPrice={props.handleSetSizeAndPrice} currentSize={props.currentSize} setAdditionalPrice={props.setAdditionalPrice} />
 
                <OptionColor colors={props.colors} handleSetColor={props.handleSetColor} prepareColorClassName={props.prepareColorClassName} currentColor={props.currentColor} />
 

@@ -4,13 +4,15 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import ProductImage from '../ProductImage/ProductImage';
 import ProductOptions from '../ProductOptions/ProductOptions';
-import { useMemo } from 'react/cjs/react.production.min';
+import { useMemo } from 'react';
 
 const Product = props => {
 
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
   const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
-  const [currentPrice, setCurrentPrice] = useState(props.basePrice)
+  const [currentPrice, setCurrentPrice] = useState(props.basePrice);
+  const [additionalPrice, setAdditionalPrice] = useState('');
+
 
   const prepareColorClassName = color => {
     return styles['color' + color[0].toUpperCase() + color.substr(1).toLowerCase()];
@@ -20,19 +22,19 @@ const Product = props => {
     setCurrentColor(color)
   }
 
-  const handleSetSizeAndPrice = useMemo((currentSize) => {
-    return (
-      setCurrentSize(currentSize.name),
-      setCurrentPrice(currentSize.additionalPrice + props.basePrice)
-    )
-  }, [currentSize]);
-
   // const handleSetSizeAndPrice = (size) => {
   //   setCurrentSize(size.name)
   //   setCurrentPrice(size.additionalPrice + props.basePrice)
   // }
 
-  console.log('tewt');
+
+    console.log('currentSize', currentSize);
+
+  useMemo(() => {
+    console.log('useMemo');
+    setCurrentPrice(additionalPrice + props.basePrice)
+  },[currentSize])
+
 
   const handleSubmitSummary = (e) => {
     e.preventDefault();
@@ -54,7 +56,7 @@ const Product = props => {
           <span className={stylesProduct.price}>Price: {currentPrice}$</span>
         </header>
 
-        <ProductOptions sizes={props.sizes} colors={props.colors} currentColor={currentColor} currentSize={currentSize} handleSubmitSummary={handleSubmitSummary} handleSetSizeAndPrice={handleSetSizeAndPrice} handleSetColor={handleSetColor} prepareColorClassName={prepareColorClassName} />
+        <ProductOptions sizes={props.sizes} colors={props.colors} currentColor={currentColor} currentSize={currentSize} handleSubmitSummary={handleSubmitSummary} handleSetSizeAndPrice={setCurrentSize} handleSetColor={handleSetColor} prepareColorClassName={prepareColorClassName} setAdditionalPrice={setAdditionalPrice} />
 
       </div>
     </article>
