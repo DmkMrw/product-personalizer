@@ -17,6 +17,6 @@ OptionSize.propType = {
      sizes: PropTypes.string.isRequired,
      handleSetSizeAndPrice: PropTypes.func.isRequired,
      currentSize: PropTypes.string.isRequired,
-}
+};
 
 export default OptionSize
