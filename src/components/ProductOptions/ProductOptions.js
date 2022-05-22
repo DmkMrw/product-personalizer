@@ -21,6 +21,13 @@ const ProductOptions = (props) => {
 
 ProductOptions.propTypes = {
      handleSubmitSummary: PropTypes.func.isRequired,
+     sizes: PropTypes.string.isRequired,
+     handleSetSizeAndPrice: PropTypes.func.isRequired,
+     currentSize: PropTypes.string.isRequired,
+     colors: PropTypes.string.isRequired,
+     currentColor: PropTypes.string.isRequired,
+     handleSetColor: PropTypes.func.isRequired,
+     prepareColorClassName: PropTypes.func.isRequired,
 };
 
 export default ProductOptions
