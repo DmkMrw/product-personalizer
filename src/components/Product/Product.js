@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import ProductImage from '../ProductImage/ProductImage';
 import ProductOptions from '../ProductOptions/ProductOptions';
+import { useMemo } from 'react/cjs/react.production.min';
 
 const Product = props => {
 
@@ -19,10 +20,19 @@ const Product = props => {
     setCurrentColor(color)
   }
 
-  const handleSetSizeAndPrice = (size) => {
-    setCurrentSize(size.name)
-    setCurrentPrice(size.additionalPrice + props.basePrice)
-  }
+  const handleSetSizeAndPrice = useMemo((currentSize) => {
+    return (
+      setCurrentSize(currentSize.name),
+      setCurrentPrice(currentSize.additionalPrice + props.basePrice)
+    )
+  }, [currentSize]);
+
+  // const handleSetSizeAndPrice = (size) => {
+  //   setCurrentSize(size.name)
+  //   setCurrentPrice(size.additionalPrice + props.basePrice)
+  // }
+
+  console.log('tewt');
 
   const handleSubmitSummary = (e) => {
     e.preventDefault();
